@@ -24,14 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BitAPI.replaceFile(filename: "hello world", vaultName: "vault #1", content: ":D :D :)")
         }
 
-        let deadlineTime2 = DispatchTime.now() + .seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime2) {
-            BitAPI.replaceFile(filename: "next", vaultName: "vault #1", content: ":P")
-        }
-
-        let deadlineTime3 = DispatchTime.now() + .seconds(3)
+        let deadlineTime3 = DispatchTime.now() + .seconds(2)
         DispatchQueue.main.asyncAfter(deadline: deadlineTime3) {
             BitAPI.getFile(filename: "hello world", vaultName: "vault #1")
+        }
+
+        let deadlineTime2 = DispatchTime.now() + .seconds(3)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime2) {
+            BitAPI.listVault(vaultName: "vault #1")
         }
 
         return true

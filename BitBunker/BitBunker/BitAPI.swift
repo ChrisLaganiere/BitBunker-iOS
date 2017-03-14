@@ -20,6 +20,21 @@ let iv = "drowssapdrowssap"
  */
 class BitAPI {
 
+    static func createVault(vaultName: String, secret: String) {
+        if let url = actionURL {
+            let params = [
+                "action": "createvault",
+                "vault": vaultName,
+                "secret": secret
+            ]
+            post(url: url, params: params, success: { (response) in
+                print(response)
+            }, failure: { (error) in
+                print(error ?? "")
+            })
+        }
+    }
+
     static func openVault(vaultName: String, secret: String) {
         if let url = actionURL {
             let params = [
@@ -35,12 +50,11 @@ class BitAPI {
         }
     }
 
-    static func createVault(vaultName: String, secret: String) {
+    static func listVault(vaultName: String) {
         if let url = actionURL {
             let params = [
-                "action": "createvault",
-                "vault": vaultName,
-                "secret": secret
+                "action": "listvault",
+                "vault": vaultName
             ]
             post(url: url, params: params, success: { (response) in
                 print(response)
