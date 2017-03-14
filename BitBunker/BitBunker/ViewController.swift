@@ -27,10 +27,6 @@ class ViewController: UIViewController {
     @IBAction func didTapSubmit(_ sender: Any) {
         print("heeey submit")
         print("filename: \(filenameField.text), password: \(passwordField.text)")
-        if let filename = filenameField.text,
-            let password = passwordField.text {
-            BitAPI.requestFile(filename: filename, password: password)
-        }
     }
 }
 

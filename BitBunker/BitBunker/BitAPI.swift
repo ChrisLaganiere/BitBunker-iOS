@@ -7,65 +7,80 @@
 //
 
 import Foundation
+import Alamofire
 
 let serverHostname = "http://localhost:8000"
+let actionURL = URL(string: serverHostname + "/action")
+
+let aeskey = "passwordpasswordpasswordpassword"
+let iv = "drowssapdrowssap"
 
 /*
  Model contacting server
  */
 class BitAPI {
 
-    static func requestFile(filename: String, password: String) {
-        if let url = URL(string: serverHostname + "/api/get/" + filename) {
-            let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                if let response = response, let data = data {
-                    print(response)
-                    print(NSString(data: data, encoding: String.Encoding.utf8.rawValue) ?? "")
-                } else if let error = error {
-                    print(error)
-                }
-            }
-
-            task.resume()
+    static func getFile(vaultName: String, fileName: String) {
+        if let url = actionURL {
+            let params = [
+                "action": "getfile",
+                "vault": vaultName,
+                "filename": fileName
+            ]
+            post(url: url, params: params, success: { (response) in
+                print(response)
+            }, failure: { (error) in
+                print(error ?? "")
+            })
         }
     }
 
     static func openVault(vaultName: String, secret: String) {
-        if let url = URL(string: serverHostname + "/openvault") {
-            post(url: url, params: ["secret": secret], success: { (data) in
-                if let data = data {
-                    print(data)
-                }
+        if let url = actionURL {
+            let params = [
+                "action": "openvault",
+                "vault": vaultName,
+                "secret": secret
+            ]
+            post(url: url, params: params, success: { (response) in
+                print(response)
+            }, failure: { (error) in
+                print(error ?? "")
             })
         }
     }
 
     //MARK: - Helper Methods
 
-    private static func post(url: URL, params: [String: String], success: (_ data: Data?)->()) {
-        let request = NSMutableURLRequest(url: url)
-        request.httpMethod = "POST"
+    private static func post(url: URL, params: [String: String], success: @escaping (String)->(), failure: @escaping (Error?)->()) {
+        // create param string to encrypt
+        let privateKey = aeskey
+
         var paramString = ""
-        var addComma = false
         for (key, value) in params {
-            if addComma {
-                paramString += ";"
-            } else {
-                addComma = true
-            }
-            paramString += "\(key)=\(value)"
+            paramString += "\(key)=\(value);"
         }
 
-        request.httpBody = paramString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-            if let error = error {
-                print(error)
-            } else {
-                print(response)
+        do {
+            let encrypted = try paramString.aesEncrypt(privateKey, iv: iv)
+            let params: Parameters = [
+                "bunker": encrypted ?? ""
+            ]
+            Alamofire.request(url, method: .post, parameters: params)
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseJSON { response in
+                    switch response.result {
+                    case .success:
+                        if let JSON = response.result.value {
+                            print("JSON: \(JSON)")
+                        }
+                    case .failure(let error):
+                        failure(error)
+                    }
             }
+        } catch let error {
+            failure(error)
         }
-
-        task.resume()
     }
-
 }
