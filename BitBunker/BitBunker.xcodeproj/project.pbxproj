@@ -15,6 +15,10 @@
 		83221F701E4D227000308C81 /* BitBunkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221F6F1E4D227000308C81 /* BitBunkerTests.swift */; };
 		83221F7B1E4D227000308C81 /* BitBunkerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221F7A1E4D227000308C81 /* BitBunkerUITests.swift */; };
 		83221F891E4D256400308C81 /* BitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221F881E4D256400308C81 /* BitAPI.swift */; };
+		83C1DDFA1E7770E30010BE3A /* String+AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C1DDF91E7770E30010BE3A /* String+AES.swift */; };
+		84D34121E096C5005C4F5361 /* Pods_BitBunker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC1959E776BDFA4F03115C2 /* Pods_BitBunker.framework */; };
+		DF8741413F5A56C753323AD8 /* Pods_BitBunkerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F36A4881F2DF67B42E7995 /* Pods_BitBunkerTests.framework */; };
+		FB1DB70BE7DDBA6084DBA46B /* Pods_BitBunkerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF3CCBD4788C1D28D58DC2E /* Pods_BitBunkerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183EF46CE1A4048A29B2BB9A /* Pods-BitBunkerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunkerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunkerUITests/Pods-BitBunkerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		18F36A4881F2DF67B42E7995 /* Pods_BitBunkerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBunkerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A550FA852086F6E8E806C51 /* Pods-BitBunkerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunkerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunkerTests/Pods-BitBunkerTests.release.xcconfig"; sourceTree = "<group>"; };
+		2DC1959E776BDFA4F03115C2 /* Pods_BitBunker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBunker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D28B9B41F99E0A2BCEB8674 /* Pods-BitBunkerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunkerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunkerTests/Pods-BitBunkerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4BF3CCBD4788C1D28D58DC2E /* Pods_BitBunkerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitBunkerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E9A3336AA16AF9158076C4F /* Pods-BitBunkerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunkerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunkerUITests/Pods-BitBunkerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7B61DEBD2DC3FBCCCBA6463A /* Pods-BitBunker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunker/Pods-BitBunker.debug.xcconfig"; sourceTree = "<group>"; };
 		83221F571E4D227000308C81 /* BitBunker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBunker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83221F5A1E4D227000308C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83221F5C1E4D227000308C81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +61,8 @@
 		83221F7A1E4D227000308C81 /* BitBunkerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitBunkerUITests.swift; sourceTree = "<group>"; };
 		83221F7C1E4D227000308C81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83221F881E4D256400308C81 /* BitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitAPI.swift; sourceTree = "<group>"; };
+		83C1DDF91E7770E30010BE3A /* String+AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AES.swift"; sourceTree = "<group>"; };
+		A5F68A1759985FA6E3337250 /* Pods-BitBunker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunker/Pods-BitBunker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D34121E096C5005C4F5361 /* Pods_BitBunker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF8741413F5A56C753323AD8 /* Pods_BitBunkerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +86,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1DB70BE7DDBA6084DBA46B /* Pods_BitBunkerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E8423F4CD53C9AE9DEB7D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B61DEBD2DC3FBCCCBA6463A /* Pods-BitBunker.debug.xcconfig */,
+				A5F68A1759985FA6E3337250 /* Pods-BitBunker.release.xcconfig */,
+				3D28B9B41F99E0A2BCEB8674 /* Pods-BitBunkerTests.debug.xcconfig */,
+				1A550FA852086F6E8E806C51 /* Pods-BitBunkerTests.release.xcconfig */,
+				183EF46CE1A4048A29B2BB9A /* Pods-BitBunkerUITests.debug.xcconfig */,
+				4E9A3336AA16AF9158076C4F /* Pods-BitBunkerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		83221F4E1E4D226F00308C81 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +113,8 @@
 				83221F6E1E4D227000308C81 /* BitBunkerTests */,
 				83221F791E4D227000308C81 /* BitBunkerUITests */,
 				83221F581E4D227000308C81 /* Products */,
+				04E8423F4CD53C9AE9DEB7D9 /* Pods */,
+				EF2736F5EC7808552D3E52AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +134,7 @@
 				83221F5A1E4D227000308C81 /* AppDelegate.swift */,
 				83221F5C1E4D227000308C81 /* ViewController.swift */,
 				83221F881E4D256400308C81 /* BitAPI.swift */,
+				83C1DDF91E7770E30010BE3A /* String+AES.swift */,
 				83221F5E1E4D227000308C81 /* Main.storyboard */,
 				83221F611E4D227000308C81 /* Assets.xcassets */,
 				83221F631E4D227000308C81 /* LaunchScreen.storyboard */,
@@ -128,6 +161,16 @@
 			path = BitBunkerUITests;
 			sourceTree = "<group>";
 		};
+		EF2736F5EC7808552D3E52AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DC1959E776BDFA4F03115C2 /* Pods_BitBunker.framework */,
+				18F36A4881F2DF67B42E7995 /* Pods_BitBunkerTests.framework */,
+				4BF3CCBD4788C1D28D58DC2E /* Pods_BitBunkerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83221F7F1E4D227000308C81 /* Build configuration list for PBXNativeTarget "BitBunker" */;
 			buildPhases = (
+				D59709D7EE71FC2BCCD079F2 /* [CP] Check Pods Manifest.lock */,
 				83221F531E4D226F00308C81 /* Sources */,
 				83221F541E4D226F00308C81 /* Frameworks */,
 				83221F551E4D226F00308C81 /* Resources */,
+				8BEC7F06F42EAB7C76939E9D /* [CP] Embed Pods Frameworks */,
+				B762A7628F15D15932F614C7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83221F821E4D227000308C81 /* Build configuration list for PBXNativeTarget "BitBunkerTests" */;
 			buildPhases = (
+				4980F625D36B0B5BCB64543C /* [CP] Check Pods Manifest.lock */,
 				83221F671E4D227000308C81 /* Sources */,
 				83221F681E4D227000308C81 /* Frameworks */,
 				83221F691E4D227000308C81 /* Resources */,
+				191B8A1E613E683CBD178DFB /* [CP] Embed Pods Frameworks */,
+				45860B0583A9475E63F429C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +219,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83221F851E4D227000308C81 /* Build configuration list for PBXNativeTarget "BitBunkerUITests" */;
 			buildPhases = (
+				35FB5C0C412BC51C907086ED /* [CP] Check Pods Manifest.lock */,
 				83221F721E4D227000308C81 /* Sources */,
 				83221F731E4D227000308C81 /* Frameworks */,
 				83221F741E4D227000308C81 /* Resources */,
+				40B451F5EE661ED1E8E572BA /* [CP] Embed Pods Frameworks */,
+				6C9AA5376628F463308CCBAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,6 +310,144 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		191B8A1E613E683CBD178DFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBunkerTests/Pods-BitBunkerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35FB5C0C412BC51C907086ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		40B451F5EE661ED1E8E572BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBunkerUITests/Pods-BitBunkerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45860B0583A9475E63F429C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBunkerTests/Pods-BitBunkerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4980F625D36B0B5BCB64543C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6C9AA5376628F463308CCBAA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBunkerUITests/Pods-BitBunkerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BEC7F06F42EAB7C76939E9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBunker/Pods-BitBunker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B762A7628F15D15932F614C7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitBunker/Pods-BitBunker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D59709D7EE71FC2BCCD079F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		83221F531E4D226F00308C81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -265,6 +455,7 @@
 			files = (
 				83221F5D1E4D227000308C81 /* ViewController.swift in Sources */,
 				83221F5B1E4D227000308C81 /* AppDelegate.swift in Sources */,
+				83C1DDFA1E7770E30010BE3A /* String+AES.swift in Sources */,
 				83221F891E4D256400308C81 /* BitAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +604,7 @@
 		};
 		83221F801E4D227000308C81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B61DEBD2DC3FBCCCBA6463A /* Pods-BitBunker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DGUKNK322A;
@@ -426,6 +618,7 @@
 		};
 		83221F811E4D227000308C81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5F68A1759985FA6E3337250 /* Pods-BitBunker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DGUKNK322A;
@@ -439,6 +632,7 @@
 		};
 		83221F831E4D227000308C81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D28B9B41F99E0A2BCEB8674 /* Pods-BitBunkerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -453,6 +647,7 @@
 		};
 		83221F841E4D227000308C81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A550FA852086F6E8E806C51 /* Pods-BitBunkerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -467,6 +662,7 @@
 		};
 		83221F861E4D227000308C81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 183EF46CE1A4048A29B2BB9A /* Pods-BitBunkerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = BitBunkerUITests/Info.plist;
@@ -480,6 +676,7 @@
 		};
 		83221F871E4D227000308C81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E9A3336AA16AF9158076C4F /* Pods-BitBunkerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = BitBunkerUITests/Info.plist;
@@ -510,6 +707,7 @@
 				83221F811E4D227000308C81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83221F821E4D227000308C81 /* Build configuration list for PBXNativeTarget "BitBunkerTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +716,7 @@
 				83221F841E4D227000308C81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83221F851E4D227000308C81 /* Build configuration list for PBXNativeTarget "BitBunkerUITests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +725,7 @@
 				83221F871E4D227000308C81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
