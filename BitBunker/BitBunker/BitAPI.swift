@@ -20,12 +20,12 @@ let iv = "drowssapdrowssap"
  */
 class BitAPI {
 
-    static func getFile(vaultName: String, fileName: String) {
+    static func openVault(vaultName: String, secret: String) {
         if let url = actionURL {
             let params = [
-                "action": "getfile",
+                "action": "openvault",
                 "vault": vaultName,
-                "filename": fileName
+                "secret": secret
             ]
             post(url: url, params: params, success: { (response) in
                 print(response)
@@ -35,12 +35,43 @@ class BitAPI {
         }
     }
 
-    static func openVault(vaultName: String, secret: String) {
+    static func createVault(vaultName: String, secret: String) {
         if let url = actionURL {
             let params = [
-                "action": "openvault",
+                "action": "createvault",
                 "vault": vaultName,
                 "secret": secret
+            ]
+            post(url: url, params: params, success: { (response) in
+                print(response)
+            }, failure: { (error) in
+                print(error ?? "")
+            })
+        }
+    }
+
+    static func replaceFile(filename: String, vaultName: String, content: String) {
+        if let url = actionURL {
+            let params = [
+                "action": "replacefile",
+                "filename": filename,
+                "vault": vaultName,
+                "content": content
+            ]
+            post(url: url, params: params, success: { (response) in
+                print(response)
+            }, failure: { (error) in
+                print(error ?? "")
+            })
+        }
+    }
+
+    static func getFile(filename: String, vaultName: String) {
+        if let url = actionURL {
+            let params = [
+                "action": "getfile",
+                "vault": vaultName,
+                "filename": filename
             ]
             post(url: url, params: params, success: { (response) in
                 print(response)
@@ -68,7 +99,6 @@ class BitAPI {
             ]
             Alamofire.request(url, method: .post, parameters: params)
                 .validate(statusCode: 200..<300)
-                .validate(contentType: ["application/json"])
                 .responseJSON { response in
                     switch response.result {
                     case .success:

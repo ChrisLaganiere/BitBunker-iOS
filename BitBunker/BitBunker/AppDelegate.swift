@@ -18,6 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         BitAPI.openVault(vaultName: "vault #1", secret: "gobears")
+//        BitAPI.openVault(vaultName: "vault #2", secret: "notthistimechump")
+        let deadlineTime = DispatchTime.now() + .seconds(1)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            BitAPI.replaceFile(filename: "hello world", vaultName: "vault #1", content: ":D :D :)")
+        }
+
+        let deadlineTime2 = DispatchTime.now() + .seconds(2)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime2) {
+            BitAPI.replaceFile(filename: "next", vaultName: "vault #1", content: ":P")
+        }
+
+        let deadlineTime3 = DispatchTime.now() + .seconds(3)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime3) {
+            BitAPI.getFile(filename: "hello world", vaultName: "vault #1")
+        }
 
         return true
     }
