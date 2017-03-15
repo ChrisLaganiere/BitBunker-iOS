@@ -13,12 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+        let initialViewController = EditorViewController(nibName: nil, bundle: nil)
+
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+
+
+        // API testing
 
         BitAPI.openVault(vaultName: "vault #1", secret: "gobears")
-//        BitAPI.openVault(vaultName: "vault #2", secret: "notthistimechump")
+
         let deadlineTime = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
             BitAPI.replaceFile(filename: "hello world", vaultName: "vault #1", content: ":D :D :)")

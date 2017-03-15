@@ -1,15 +1,28 @@
 PODS:
   - Alamofire (4.4.0)
   - CryptoSwift (0.6.7)
+  - RichEditorView (3.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - CryptoSwift
+  - RichEditorView (from `https://github.com/cjwirth/RichEditorView.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  RichEditorView:
+    :branch: master
+    :git: https://github.com/cjwirth/RichEditorView.git
+
+CHECKOUT OPTIONS:
+  RichEditorView:
+    :commit: 2da41c4c3f64099f6456ec04b79d5e6bf8dcf29e
+    :git: https://github.com/cjwirth/RichEditorView.git
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
+  RichEditorView: b4ee60a4f5301cbe8f3fcb1f065cdd7de74ddd10
 
-PODFILE CHECKSUM: d1a920db12b4ed48bd775334970e46583bb462d8
+PODFILE CHECKSUM: 0bc612e7a312e440362af14a6a8062c8a83f88f3
 
 COCOAPODS: 1.2.0

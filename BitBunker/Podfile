@@ -7,6 +7,7 @@ target 'BitBunker' do
 
   pod 'Alamofire', '~> 4.4'
   pod 'CryptoSwift'
+  pod 'RichEditorView', :git => "https://github.com/cjwirth/RichEditorView.git", :branch => "master"
 
   # Pods for BitBunker
 
