@@ -42,7 +42,9 @@ class VaultListModel {
 
     func updateFile(updated: File, original: File?) {
         BitAPI.replaceFile(updated: updated, original: original, success: { (response) in
-            self.updateFileList()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.updateFileList()
+            }
         }) { (error) in
             print(error ?? "")
         }
@@ -108,7 +110,9 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
         cardCollectionViewLayout.spaceAtTopForBackgroundView = 44
 
         let createFileBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createFile))
-        self.navigationItem.setRightBarButton(createFileBarButtonItem, animated: true)
+        let refreshListBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshList))
+        self.navigationItem.setRightBarButtonItems([refreshListBarButtonItem, createFileBarButtonItem], animated: true)
+        self.navigationController?.navigationBar.tintColor = UIColor.black
 
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(back))
@@ -170,6 +174,10 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
 
     func createFile() {
         presentFileEditor(file: nil)
+    }
+
+    func refreshList() {
+        model.updateFileList()
     }
 
     func unrevealCard() {

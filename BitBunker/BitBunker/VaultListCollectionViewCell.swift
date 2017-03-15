@@ -48,6 +48,7 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
     let titleLabel = UILabel(frame: CGRect.zero)
     let editButton = UIButton(type: .roundedRect)
     let deleteButton = UIButton(type: .roundedRect)
+    let fileTypeImageView = UIImageView(image: UIImage(named: "fileicon"))
 
     var indexPath: IndexPath?
     var delegate: VaultListFileDelegate?
@@ -75,21 +76,31 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
 
         editButton.addTarget(self, action: #selector(editFile), for: .touchUpInside)
         editButton.setTitle("Open", for: .normal)
-        editButton.backgroundColor = UIColor.green
-        editButton.setTitleColor(UIColor.white, for: .normal)
+        editButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        editButton.backgroundColor = UIColor.green.withAlphaComponent(0.8)
+        editButton.setTitleColor(UIColor.black, for: .normal)
         editButton.layer.cornerRadius = 10
+        editButton.layer.borderColor = UIColor.black.cgColor
+        editButton.layer.borderWidth = 1.0
         editButton.clipsToBounds = true
         editButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(editButton)
 
         deleteButton.addTarget(self, action: #selector(deleteFile), for: .touchUpInside)
         deleteButton.setTitle("Delete", for: .normal)
-        deleteButton.backgroundColor = UIColor.red
-        deleteButton.setTitleColor(UIColor.white, for: .normal)
+        deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        deleteButton.backgroundColor = UIColor.red.withAlphaComponent(0.8)
+        deleteButton.setTitleColor(UIColor.black, for: .normal)
         deleteButton.layer.cornerRadius = 10
+        deleteButton.layer.borderColor = UIColor.black.cgColor
+        deleteButton.layer.borderWidth = 1.0
         deleteButton.clipsToBounds = true
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(deleteButton)
+
+        fileTypeImageView.tintColor = UIColor.green.withAlphaComponent(0.5)
+        fileTypeImageView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(fileTypeImageView)
 
         contentView.addConstraints(preferredConstraints())
         containerView.addConstraints(containerViewConstraints())
@@ -110,6 +121,7 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
     func cardIsRevealed(_ isRevealed: Bool) {
         editButton.isHidden = !isRevealed
         deleteButton.isHidden = !isRevealed
+        fileTypeImageView.isHidden = isRevealed
     }
 
     // MARK: - Actions
@@ -142,7 +154,7 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
     func containerViewConstraints() -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         let views = ["back": backView, "title": titleLabel, "edit": editButton, "delete": deleteButton]
-        let metrics = ["pad": 15, "top": 35, "actions": 100, "buttonPadding": 50, "buttonH": 50, "buttonW": 150]
+        let metrics = ["pad": 15, "top": 35, "actions": 80, "buttonPadding": 30, "buttonH": 50, "buttonW": 150]
 
         // back gradient
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[back(100)]", options: [], metrics: nil, views: views)
@@ -157,6 +169,12 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
 
         // vertical
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[title(30)]-(actions)-[edit(buttonH)]-(buttonPadding)-[delete(buttonH)]", options: [], metrics: metrics, views: views)
+
+        // file type image view
+        constraints.append(NSLayoutConstraint(item: fileTypeImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 140))
+        constraints.append(NSLayoutConstraint(item: fileTypeImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 140))
+        constraints.append(NSLayoutConstraint(item: fileTypeImageView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: fileTypeImageView, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1.0, constant: 30.0))
 
         return constraints
     }

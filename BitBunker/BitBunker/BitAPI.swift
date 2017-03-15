@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+//let serverHostname = "http://192.168.1.1"
 let serverHostname = "http://localhost:8000"
 let actionURL = URL(string: serverHostname + "/action")
 
@@ -151,7 +152,7 @@ class BitAPI {
 
         var paramString = ""
         for (key, value) in params {
-            paramString += "\(key)=\(value);"
+            paramString += "\(key)==>>\(value)<<==;"
         }
 
         do {
@@ -166,7 +167,15 @@ class BitAPI {
                     case .success:
                         if let JSON = response.result.value as? NSDictionary {
 //                            print("JSON: \(JSON)")
-                            success(JSON)
+                            do {
+                                if let encrypted = JSON["bunker"] as? String ,
+                                    let decrypted = try encrypted.aesDecrypt(privateKey, iv: iv),
+                                    let jsonDict = decrypted.jsonValue as? NSDictionary {
+                                    success(jsonDict)
+                                }
+                            } catch let error {
+                                print(error)
+                            }
                         } else {
                             print("Incorrect json type")
                             failure(nil)

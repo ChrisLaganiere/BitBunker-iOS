@@ -15,6 +15,7 @@
 		83221F701E4D227000308C81 /* BitBunkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221F6F1E4D227000308C81 /* BitBunkerTests.swift */; };
 		83221F7B1E4D227000308C81 /* BitBunkerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221F7A1E4D227000308C81 /* BitBunkerUITests.swift */; };
 		83221F891E4D256400308C81 /* BitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83221F881E4D256400308C81 /* BitAPI.swift */; };
+		839E4FA61E79ECFC00DA99FF /* String+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E4FA51E79ECFC00DA99FF /* String+JSON.swift */; };
 		83BA5FCA1E78BDB300C364E3 /* VaultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FC91E78BDB300C364E3 /* VaultListViewController.swift */; };
 		83BA5FCC1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FCB1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift */; };
 		83BA5FCE1E78EABA00C364E3 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FCD1E78EAB900C364E3 /* KeyboardManager.swift */; };
@@ -65,6 +66,7 @@
 		83221F7A1E4D227000308C81 /* BitBunkerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitBunkerUITests.swift; sourceTree = "<group>"; };
 		83221F7C1E4D227000308C81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83221F881E4D256400308C81 /* BitAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitAPI.swift; sourceTree = "<group>"; };
+		839E4FA51E79ECFC00DA99FF /* String+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+JSON.swift"; sourceTree = "<group>"; };
 		83BA5FC91E78BDB300C364E3 /* VaultListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaultListViewController.swift; sourceTree = "<group>"; };
 		83BA5FCB1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaultListCollectionViewCell.swift; sourceTree = "<group>"; };
 		83BA5FCD1E78EAB900C364E3 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				83BA5FCB1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift */,
 				83221F881E4D256400308C81 /* BitAPI.swift */,
 				83C1DDF91E7770E30010BE3A /* String+AES.swift */,
+				839E4FA51E79ECFC00DA99FF /* String+JSON.swift */,
 				83221F5E1E4D227000308C81 /* Main.storyboard */,
 				83221F611E4D227000308C81 /* Assets.xcassets */,
 				83221F631E4D227000308C81 /* LaunchScreen.storyboard */,
@@ -470,6 +473,7 @@
 				83221F5D1E4D227000308C81 /* EditorViewController.swift in Sources */,
 				83221F5B1E4D227000308C81 /* AppDelegate.swift in Sources */,
 				83C1DDFA1E7770E30010BE3A /* String+AES.swift in Sources */,
+				839E4FA61E79ECFC00DA99FF /* String+JSON.swift in Sources */,
 				83221F891E4D256400308C81 /* BitAPI.swift in Sources */,
 				83BA5FCE1E78EABA00C364E3 /* KeyboardManager.swift in Sources */,
 				83BA5FCC1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift in Sources */,

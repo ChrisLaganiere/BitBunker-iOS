@@ -62,6 +62,7 @@ class EnterViewController: UIViewController {
         vaultSecretTextField.placeholder = "Secret Key"
         vaultSecretTextField.autocorrectionType = .no
         vaultSecretTextField.autocapitalizationType = .none
+        vaultSecretTextField.isSecureTextEntry = true
         vaultSecretTextField.textAlignment = .center
         vaultSecretTextField.layer.borderColor = UIColor.black.cgColor
         vaultSecretTextField.layer.borderWidth = 1.0
@@ -77,8 +78,9 @@ class EnterViewController: UIViewController {
         openVaultButton.addTarget(self, action: #selector(handleOpenVault), for: .touchUpInside)
         openVaultButton.layer.cornerRadius = 10
         openVaultButton.clipsToBounds = true
-        openVaultButton.backgroundColor = UIColor.green
+        openVaultButton.backgroundColor = UIColor.green.withAlphaComponent(0.67)
         openVaultButton.setTitle("Open Vault", for: .normal)
+        openVaultButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         openVaultButton.setTitleColor(UIColor.white, for: .normal)
         openVaultButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(openVaultButton)
@@ -86,8 +88,9 @@ class EnterViewController: UIViewController {
         createVaultButton.addTarget(self, action: #selector(handleCreateVault), for: .touchUpInside)
         createVaultButton.layer.cornerRadius = 10
         createVaultButton.clipsToBounds = true
-        createVaultButton.backgroundColor = UIColor.green
+        createVaultButton.backgroundColor = UIColor.green.withAlphaComponent(0.67)
         createVaultButton.setTitle("Create Vault", for: .normal)
+        createVaultButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         createVaultButton.setTitleColor(UIColor.white, for: .normal)
         createVaultButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(createVaultButton)

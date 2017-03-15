@@ -179,7 +179,7 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(pad)-[cancel]-(pad)-[title]-(pad)-[save]-(pad)-|", options: [], metrics: metrics, views: views)
 
         // vertical
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[title(25)]-(mid)-[rev]-(pad)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[title(30)]-(mid)-[rev]-(pad)-|", options: [], metrics: metrics, views: views)
         constraints.append(NSLayoutConstraint(item: cancelButton, attribute: .centerY, relatedBy: .equal, toItem: titleTextField, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         constraints.append(NSLayoutConstraint(item: saveButton, attribute: .centerY, relatedBy: .equal, toItem: titleTextField, attribute: .centerY, multiplier: 1.0, constant: 0.0))
 
