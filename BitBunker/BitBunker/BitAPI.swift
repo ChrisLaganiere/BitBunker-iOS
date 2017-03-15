@@ -18,7 +18,21 @@ let iv = "drowssapdrowssap"
 
 struct File {
     var filename: String
-    var content: String
+    var content: String? = nil
+    static func filesFromJSON(rawJSON: Any) -> [File]? {
+        var files = [File]()
+        if let json = rawJSON as? NSArray {
+            for o in json {
+                if let rawFile = o as? NSDictionary,
+                    let filename = rawFile["filename"] as? String {
+                    let content = rawFile["content"] as? String
+                    let file = File(filename: filename, content: content)
+                    files.append(file)
+                }
+            }
+        }
+        return files.count > 0 ? files : nil
+    }
 }
 
 /*
@@ -26,47 +40,35 @@ struct File {
  */
 class BitAPI {
 
-    static func createVault(vaultName: String, secret: String) {
+    static func createVault(vaultName: String, secret: String, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
         if let url = actionURL {
             let params = [
                 "action": "createvault",
                 "vault": vaultName,
                 "secret": secret
             ]
-            post(url: url, params: params, success: { (response) in
-                print(response)
-            }, failure: { (error) in
-                print(error ?? "")
-            })
+            post(url: url, params: params, success: success, failure: failure)
         }
     }
 
-    static func openVault(vaultName: String, secret: String) {
+    static func openVault(vaultName: String, secret: String, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
         if let url = actionURL {
             let params = [
                 "action": "openvault",
                 "vault": vaultName,
                 "secret": secret
             ]
-            post(url: url, params: params, success: { (response) in
-                print(response)
-            }, failure: { (error) in
-                print(error ?? "")
-            })
+            post(url: url, params: params, success: success, failure: failure)
         }
     }
 
-    static func listVault(vaultName: String) {
+    static func listVault(vaultName: String, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
         if let url = actionURL {
             let params = [
                 "action": "listvault",
                 "vault": vaultName
             ]
-            post(url: url, params: params, success: { (response) in
-                print(response)
-            }, failure: { (error) in
-                print(error ?? "")
-            })
+            post(url: url, params: params, success: success, failure: failure)
         }
     }
 
@@ -122,7 +124,7 @@ class BitAPI {
 
     // MARK: - Helper Methods
 
-    private static func post(url: URL, params: [String: String], success: @escaping (String)->(), failure: @escaping (Error?)->()) {
+    private static func post(url: URL, params: [String: String], success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
         // create param string to encrypt
         let privateKey = aeskey
 
@@ -141,8 +143,12 @@ class BitAPI {
                 .responseJSON { response in
                     switch response.result {
                     case .success:
-                        if let JSON = response.result.value {
-                            print("JSON: \(JSON)")
+                        if let JSON = response.result.value as? NSDictionary {
+//                            print("JSON: \(JSON)")
+                            success(JSON)
+                        } else {
+                            print("Incorrect json type")
+                            failure(nil)
                         }
                     case .failure(let error):
                         failure(error)

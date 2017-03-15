@@ -59,7 +59,7 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(containerView)
 
-        containerView.backgroundColor = UIColor.lightGray
+        containerView.backgroundColor = UIColor.gray
         containerView.layer.cornerRadius = 10
         containerView.clipsToBounds = true
         containerView.layer.borderColor = UIColor.black.cgColor
@@ -104,6 +104,12 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
     func styleWithFile(file: File, indexPath: IndexPath) {
         titleLabel.text = file.filename
         self.indexPath = indexPath
+        cardIsRevealed(false)
+    }
+
+    func cardIsRevealed(_ isRevealed: Bool) {
+        editButton.isHidden = !isRevealed
+        deleteButton.isHidden = !isRevealed
     }
 
     // MARK: - Actions

@@ -25,14 +25,23 @@ class VaultListModel {
     }
 
     func updateFiles() {
-        BitAPI.getMockVaultList { (files) in
-            self.files = files
-            self.delegate?.didUpdateFiles()
+        BitAPI.listVault(vaultName: vaultName, success: { (response) in
+            if let success = response["success"] as? Bool,
+                success {
+//                print(response)
+                if let rawFiles = response["files"],
+                    let files = File.filesFromJSON(rawJSON: rawFiles) {
+                    self.files = files
+                    self.delegate?.didUpdateFiles()
+                }
+            }
+        }) { (error) in
+            print(error ?? "")
         }
     }
 
     func updateFile(updated: File, original: File?) {
-//        files.updateValue(content, forKey: filename)
+        
         delegate?.didUpdateFiles()
     }
 
@@ -68,6 +77,8 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
         title = model.vaultName
 
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: cardCollectionViewLayout)
+        let collectionViewTap = UITapGestureRecognizer(target: self, action: #selector(unrevealCard))
+        collectionView.addGestureRecognizer(collectionViewTap)
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -86,16 +97,8 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
         cardCollectionViewLayout.spaceAtBottom = 40
         cardCollectionViewLayout.spaceAtTopForBackgroundView = 44
 
-//        cardCollectionViewLayout?.firstMovableIndex = cardLayoutOptions.firstMovableIndex
-//        self.cardCollectionViewLayout?.bottomStackedCardsShouldScale = cardLayoutOptions.bottomStackedCardsShouldScale
-//        self.cardCollectionViewLayout?.bottomCardLookoutMargin = cardLayoutOptions.bottomCardLookoutMargin
-//        self.cardCollectionViewLayout?.spaceAtTopShouldSnap = cardLayoutOptions.spaceAtTopShouldSnap
-//        self.cardCollectionViewLayout?.scrollAreaTop = cardLayoutOptions.scrollAreaTop
-//        self.cardCollectionViewLayout?.scrollAreaBottom = cardLayoutOptions.scrollAreaBottom
-//        self.cardCollectionViewLayout?.scrollShouldSnapCardHead = cardLayoutOptions.scrollShouldSnapCardHead
-//        cardCollectionViewLayout.scrollStopCardsAtTop = false
-//        self.cardCollectionViewLayout?.bottomStackedCardsMinimumScale = cardLayoutOptions.bottomStackedCardsMinimumScale
-//        self.cardCollectionViewLayout?.bottomStackedCardsMaximumScale = cardLayoutOptions.bottomStackedCardsMaximumScale
+        let createFileBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createFile))
+        self.navigationItem.setRightBarButton(createFileBarButtonItem, animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -135,6 +138,30 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         cardCollectionViewLayout.revealCardAt(index: indexPath.item)
+    }
+
+    // MARK: - Card collection view layout
+
+    func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willRevealCardAtIndex index: Int) {
+        if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? VaultListCollectionViewCell {
+            cell.cardIsRevealed(true)
+        }
+    }
+
+    func cardCollectionViewLayout(_ collectionViewLayout: HFCardCollectionViewLayout, willUnrevealCardAtIndex index: Int) {
+        if let cell = self.collectionView?.cellForItem(at: IndexPath(item: index, section: 0)) as? VaultListCollectionViewCell {
+            cell.cardIsRevealed(false)
+        }
+    }
+
+    // MARK: - Actions
+
+    func createFile() {
+        presentFileEditor(file: nil)
+    }
+
+    func unrevealCard() {
+        cardCollectionViewLayout.unrevealCard()
     }
 
     // MARK: - VaultListModelDelegate
@@ -179,7 +206,7 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
 
     // MARK: - Layout
 
-    func presentFileEditor(file: File) {
+    func presentFileEditor(file: File?) {
         let editorViewController = EditorViewController(file: file)
         editorViewController.delegate = self
         editorViewController.modalPresentationStyle = .fullScreen

@@ -39,7 +39,9 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
 
         if let file = file {
             titleTextField.text = file.filename
-            richTextView.html = file.content
+            richTextView.html = file.content ?? ""
+        } else {
+            richTextView.html = "<i>bunk</i> this"
         }
     }
     
@@ -89,6 +91,8 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(cancelButton)
 
+        titleTextField.addTarget(self, action: #selector(titleTextFieldChanged), for: .editingChanged)
+        titleTextField.placeholder = "Title"
         titleTextField.textAlignment = .center
         titleTextField.layer.cornerRadius = 10.0
         titleTextField.clipsToBounds = true
@@ -113,6 +117,11 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        titleTextFieldChanged()
+    }
+
     // MARK: - Actions
 
     func handleCancel() {
@@ -126,6 +135,10 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
             let updated = File(filename: filename, content: content)
             delegate?.saveEdit(updated: updated, original: originalFile)
         }
+    }
+
+    func titleTextFieldChanged() {
+        saveButton.isEnabled = titleTextField.text?.characters.count ?? 0 > 0
     }
 
     func keyboardWillShow(notification: Notification) {

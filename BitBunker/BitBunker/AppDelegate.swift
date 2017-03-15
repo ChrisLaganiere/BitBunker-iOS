@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        let initialViewController = VaultListViewController(vaultName: "vault #1")
+        let initialViewController = EnterViewController(nibName: nil, bundle: nil)
         let navigationController = UINavigationController(rootViewController: initialViewController)
 
         self.window?.rootViewController = navigationController
@@ -25,22 +25,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // API testing
 
-        BitAPI.openVault(vaultName: "vault #1", secret: "gobears")
-
-        let deadlineTime = DispatchTime.now() + .seconds(1)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
-            BitAPI.replaceFile(filename: "hello world", vaultName: "vault #1", content: ":D :D :)")
-        }
-
-        let deadlineTime3 = DispatchTime.now() + .seconds(2)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime3) {
-            BitAPI.getFile(filename: "hello world", vaultName: "vault #1")
-        }
-
-        let deadlineTime2 = DispatchTime.now() + .seconds(3)
-        DispatchQueue.main.asyncAfter(deadline: deadlineTime2) {
-            BitAPI.listVault(vaultName: "vault #1")
-        }
+//        BitAPI.openVault(vaultName: "vault #1", secret: "gobears")
+//
+//        let deadlineTime = DispatchTime.now() + .seconds(1)
+//        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+//            BitAPI.replaceFile(filename: "hello world", vaultName: "vault #1", content: ":D :D :)")
+//        }
+//
+//        let deadlineTime3 = DispatchTime.now() + .seconds(2)
+//        DispatchQueue.main.asyncAfter(deadline: deadlineTime3) {
+//            BitAPI.getFile(filename: "hello world", vaultName: "vault #1")
+//        }
+//
+//        let deadlineTime2 = DispatchTime.now() + .seconds(3)
+//        DispatchQueue.main.asyncAfter(deadline: deadlineTime2) {
+//            BitAPI.listVault(vaultName: "vault #1")
+//        }
 
         return true
     }

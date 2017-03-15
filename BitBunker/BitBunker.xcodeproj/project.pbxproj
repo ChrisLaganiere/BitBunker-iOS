@@ -18,6 +18,7 @@
 		83BA5FCA1E78BDB300C364E3 /* VaultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FC91E78BDB300C364E3 /* VaultListViewController.swift */; };
 		83BA5FCC1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FCB1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift */; };
 		83BA5FCE1E78EABA00C364E3 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FCD1E78EAB900C364E3 /* KeyboardManager.swift */; };
+		83BA5FD21E79084500C364E3 /* EnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5FD11E79084500C364E3 /* EnterViewController.swift */; };
 		83C1DDFA1E7770E30010BE3A /* String+AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C1DDF91E7770E30010BE3A /* String+AES.swift */; };
 		84D34121E096C5005C4F5361 /* Pods_BitBunker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC1959E776BDFA4F03115C2 /* Pods_BitBunker.framework */; };
 		DF8741413F5A56C753323AD8 /* Pods_BitBunkerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F36A4881F2DF67B42E7995 /* Pods_BitBunkerTests.framework */; };
@@ -67,6 +68,7 @@
 		83BA5FC91E78BDB300C364E3 /* VaultListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaultListViewController.swift; sourceTree = "<group>"; };
 		83BA5FCB1E78C5FC00C364E3 /* VaultListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaultListCollectionViewCell.swift; sourceTree = "<group>"; };
 		83BA5FCD1E78EAB900C364E3 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		83BA5FD11E79084500C364E3 /* EnterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterViewController.swift; sourceTree = "<group>"; };
 		83C1DDF91E7770E30010BE3A /* String+AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AES.swift"; sourceTree = "<group>"; };
 		A5F68A1759985FA6E3337250 /* Pods-BitBunker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitBunker.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitBunker/Pods-BitBunker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				83221F5A1E4D227000308C81 /* AppDelegate.swift */,
+				83BA5FD11E79084500C364E3 /* EnterViewController.swift */,
 				83221F5C1E4D227000308C81 /* EditorViewController.swift */,
 				83BA5FCD1E78EAB900C364E3 /* KeyboardManager.swift */,
 				83BA5FC91E78BDB300C364E3 /* VaultListViewController.swift */,
@@ -463,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BA5FCA1E78BDB300C364E3 /* VaultListViewController.swift in Sources */,
+				83BA5FD21E79084500C364E3 /* EnterViewController.swift in Sources */,
 				83221F5D1E4D227000308C81 /* EditorViewController.swift in Sources */,
 				83221F5B1E4D227000308C81 /* AppDelegate.swift in Sources */,
 				83C1DDFA1E7770E30010BE3A /* String+AES.swift in Sources */,
