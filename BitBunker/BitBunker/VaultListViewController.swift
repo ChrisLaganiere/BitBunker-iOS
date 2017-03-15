@@ -16,7 +16,7 @@ protocol VaultListModelDelegate {
 
 class VaultListModel {
     let vaultName: String
-    private(set) var files = [String: String]()
+    private(set) var files = [File]()
 
     var delegate: VaultListModelDelegate?
 
@@ -25,18 +25,24 @@ class VaultListModel {
     }
 
     func updateFiles() {
-        print("to do")
-        files.updateValue(String(repeating: "a", count: files.count+1), forKey: String(repeating: "a", count: files.count+1))
+        BitAPI.getMockVaultList { (files) in
+            self.files = files
+            self.delegate?.didUpdateFiles()
+        }
+    }
+
+    func updateFile(updated: File, original: File?) {
+//        files.updateValue(content, forKey: filename)
         delegate?.didUpdateFiles()
     }
 
-    func updateFile(filename: String, content: String) {
-        files.updateValue(content, forKey: filename)
+    func deleteFile(original: File) {
+//        files.updateValue(content, forKey: filename)
         delegate?.didUpdateFiles()
     }
 }
 
-class VaultListViewController: UIViewController, UICollectionViewDataSource, HFCardCollectionViewLayoutDelegate {
+class VaultListViewController: UIViewController, UICollectionViewDataSource, HFCardCollectionViewLayoutDelegate, VaultListModelDelegate, VaultListFileDelegate, EditorViewDelegate {
 
     var collectionView: UICollectionView?
     var model: VaultListModel
@@ -48,6 +54,8 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     required init(vaultName: String) {
         model = VaultListModel(vaultName: vaultName)
         super.init(nibName: nil, bundle: nil)
+
+        model.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +93,7 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
 //        self.cardCollectionViewLayout?.scrollAreaTop = cardLayoutOptions.scrollAreaTop
 //        self.cardCollectionViewLayout?.scrollAreaBottom = cardLayoutOptions.scrollAreaBottom
 //        self.cardCollectionViewLayout?.scrollShouldSnapCardHead = cardLayoutOptions.scrollShouldSnapCardHead
-//        self.cardCollectionViewLayout?.scrollStopCardsAtTop = cardLayoutOptions.scrollStopCardsAtTop
+//        cardCollectionViewLayout.scrollStopCardsAtTop = false
 //        self.cardCollectionViewLayout?.bottomStackedCardsMinimumScale = cardLayoutOptions.bottomStackedCardsMinimumScale
 //        self.cardCollectionViewLayout?.bottomStackedCardsMaximumScale = cardLayoutOptions.bottomStackedCardsMaximumScale
     }
@@ -105,7 +113,7 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15//model.files.count
+        return model.files.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,14 +125,66 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
+        if indexPath.item < model.files.count,
+            let fileCell = cell as? VaultListCollectionViewCell {
+            let file = model.files[indexPath.item]
+            fileCell.styleWithFile(file: file, indexPath: indexPath)
+            fileCell.delegate = self
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         cardCollectionViewLayout.revealCardAt(index: indexPath.item)
     }
 
-    //MARK: - Layout
+    // MARK: - VaultListModelDelegate
+
+    func didUpdateFiles() {
+        cardCollectionViewLayout.unrevealCard()
+        collectionView?.reloadData()
+    }
+
+    func failedToUpdateFiles() {
+
+    }
+
+    // MARK: - VaultListFileDelegate
+
+    func handleEditFile(indexPath: IndexPath) {
+        if indexPath.item < model.files.count {
+            let file = model.files[indexPath.item]
+            presentFileEditor(file: file)
+        }
+    }
+
+    func handleDeleteFile(indexPath: IndexPath) {
+        if indexPath.item < model.files.count {
+            let file = model.files[indexPath.item]
+            model.deleteFile(original: file)
+            cardCollectionViewLayout.unrevealCard()
+        }
+    }
+
+    // MARK: - EditorViewDelegate
+
+    func cancelEdit() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    func saveEdit(updated: File, original: File?) {
+        self.dismiss(animated: true) {
+            self.model.updateFile(updated: updated, original: original)
+        }
+    }
+
+    // MARK: - Layout
+
+    func presentFileEditor(file: File) {
+        let editorViewController = EditorViewController(file: file)
+        editorViewController.delegate = self
+        editorViewController.modalPresentationStyle = .fullScreen
+        self.present(editorViewController, animated: true, completion: nil)
+    }
 
     func preferredConstraints() -> [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()

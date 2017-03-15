@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-//        let initialViewController = VaultListViewController(vaultName: "vault #1")
-//        let navigationController = UINavigationController(rootViewController: initialViewController)
+        let initialViewController = VaultListViewController(vaultName: "vault #1")
+        let navigationController = UINavigationController(rootViewController: initialViewController)
 
-        self.window?.rootViewController = EditorViewController(nibName: nil, bundle: nil)
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
 
 

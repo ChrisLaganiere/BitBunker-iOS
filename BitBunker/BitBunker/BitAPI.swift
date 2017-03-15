@@ -15,6 +15,12 @@ let actionURL = URL(string: serverHostname + "/action")
 let aeskey = "passwordpasswordpasswordpassword"
 let iv = "drowssapdrowssap"
 
+
+struct File {
+    var filename: String
+    var content: String
+}
+
 /*
  Model contacting server
  */
@@ -95,7 +101,26 @@ class BitAPI {
         }
     }
 
-    //MARK: - Helper Methods
+    // MARK: - Mock Data
+
+    static func getMockVaultList(callback: ([File])->()) {
+        callback([
+            File(filename: "File #1", content: "aaaa"),
+            File(filename: "File #2", content: "aaaafffsad"),
+            File(filename: "File #3", content: "aadadfadfasdfdfdsa"),
+            File(filename: "File #4", content: "aaaaaafdfdfecace"),
+            File(filename: "File #5", content: "aaaaxxx"),
+            File(filename: "File #6", content: "aaaaxffx"),
+            File(filename: "File #7", content: "aaaaccccacacac"),
+            File(filename: "File #8", content: "aaaaballs"),
+            File(filename: "File #9", content: "aaaafdsafds"),
+            File(filename: "File #10", content: "aaaaadaf"),
+            File(filename: "File #11", content: "aaaasss"),
+            File(filename: "File #12", content: "aaaadafer"),
+        ])
+    }
+
+    // MARK: - Helper Methods
 
     private static func post(url: URL, params: [String: String], success: @escaping (String)->(), failure: @escaping (Error?)->()) {
         // create param string to encrypt
