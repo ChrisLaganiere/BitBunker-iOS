@@ -24,7 +24,7 @@ class VaultListModel {
         self.vaultName = vaultName
     }
 
-    func updateFiles() {
+    func updateFileList() {
         BitAPI.listVault(vaultName: vaultName, success: { (response) in
             if let success = response["success"] as? Bool,
                 success {
@@ -42,15 +42,20 @@ class VaultListModel {
 
     func updateFile(updated: File, original: File?) {
         BitAPI.replaceFile(updated: updated, original: original, success: { (response) in
-            self.updateFiles()
+            self.updateFileList()
         }) { (error) in
             print(error ?? "")
         }
     }
 
     func deleteFile(original: File) {
-//        files.updateValue(content, forKey: filename)
-        delegate?.didUpdateFiles()
+        BitAPI.deleteFile(filename: original.filename, vaultName: original.vaultName, success: { (response) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.updateFileList()
+            }
+        }) { (error) in
+            print(error ?? "")
+        }
     }
 }
 
@@ -77,7 +82,7 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        model.updateFiles()
+        model.updateFileList()
 
         title = model.vaultName
 
@@ -104,6 +109,10 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
 
         let createFileBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createFile))
         self.navigationItem.setRightBarButton(createFileBarButtonItem, animated: true)
+
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(back))
+        self.navigationItem.leftBarButtonItem = newBackButton
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -167,11 +176,31 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
         cardCollectionViewLayout.unrevealCard()
     }
 
+    func back() {
+        BitAPI.closeVault(vaultName: model.vaultName, success: { (response) in
+            if let success = response["success"] as? Bool,
+                success {
+//                print("closed vault")
+            } else {
+                print(response)
+            }
+        }) { (error) in
+            print(error ?? "")
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+
     // MARK: - VaultListModelDelegate
 
     func didUpdateFiles() {
         unrevealCard()
+//        print(model.files)
         collectionView?.reloadData()
+//        collectionView?.collectionViewLayout.invalidateLayout()
+//        collectionView?.reloadSections([0])
+//        cardCollectionViewLayout.invalidateLayout()
+//        collectionView?.reloadItems(at: collectionView?.indexPathsForVisibleItems ?? [])
+
     }
 
     func failedToUpdateFiles() {

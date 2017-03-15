@@ -27,7 +27,7 @@ struct File {
                 if let rawFile = o as? NSDictionary,
                     let filename = rawFile["filename"] as? String {
                     let content = rawFile["content"] as? String
-                    let vaultName = rawFile["vaultName"] as? String ?? ""
+                    let vaultName = rawFile["vault_name"] as? String ?? ""
                     let file = File(filename: filename, vaultName: vaultName, content: content)
                     files.append(file)
                 }
@@ -59,6 +59,16 @@ class BitAPI {
                 "action": "openvault",
                 "vault": vaultName,
                 "secret": secret
+            ]
+            post(url: url, params: params, success: success, failure: failure)
+        }
+    }
+
+    static func closeVault(vaultName: String, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
+        if let url = actionURL {
+            let params = [
+                "action": "closevault",
+                "vault": vaultName
             ]
             post(url: url, params: params, success: success, failure: failure)
         }
@@ -96,6 +106,17 @@ class BitAPI {
         if let url = actionURL {
             let params = [
                 "action": "getfile",
+                "vault": vaultName,
+                "filename": filename
+            ]
+            post(url: url, params: params, success: success, failure: failure)
+        }
+    }
+
+    static func deleteFile(filename: String, vaultName: String, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
+        if let url = actionURL {
+            let params = [
+                "action": "deletefile",
                 "vault": vaultName,
                 "filename": filename
             ]
