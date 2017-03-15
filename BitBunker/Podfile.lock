@@ -1,11 +1,13 @@
 PODS:
   - Alamofire (4.4.0)
   - CryptoSwift (0.6.7)
+  - HFCardCollectionViewLayout (0.3.3)
   - RichEditorView (3.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - CryptoSwift
+  - HFCardCollectionViewLayout
   - RichEditorView (from `https://github.com/cjwirth/RichEditorView.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -21,8 +23,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
+  HFCardCollectionViewLayout: 8eeb7c5286fc9b5bfcf924081e10a0357198e854
   RichEditorView: b4ee60a4f5301cbe8f3fcb1f065cdd7de74ddd10
 
-PODFILE CHECKSUM: 0bc612e7a312e440362af14a6a8062c8a83f88f3
+PODFILE CHECKSUM: 5e15d5b1567f7abffb9da7ab9c80ff428c30751a
 
 COCOAPODS: 1.2.0
