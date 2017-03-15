@@ -74,7 +74,7 @@ class VaultListCollectionViewCell: HFCardCollectionViewCell {
         containerView.addSubview(titleLabel)
 
         editButton.addTarget(self, action: #selector(editFile), for: .touchUpInside)
-        editButton.setTitle("Edit", for: .normal)
+        editButton.setTitle("Open", for: .normal)
         editButton.backgroundColor = UIColor.green
         editButton.setTitleColor(UIColor.white, for: .normal)
         editButton.layer.cornerRadius = 10

@@ -18,6 +18,7 @@ let iv = "drowssapdrowssap"
 
 struct File {
     var filename: String
+    var vaultName: String
     var content: String? = nil
     static func filesFromJSON(rawJSON: Any) -> [File]? {
         var files = [File]()
@@ -26,7 +27,8 @@ struct File {
                 if let rawFile = o as? NSDictionary,
                     let filename = rawFile["filename"] as? String {
                     let content = rawFile["content"] as? String
-                    let file = File(filename: filename, content: content)
+                    let vaultName = rawFile["vaultName"] as? String ?? ""
+                    let file = File(filename: filename, vaultName: vaultName, content: content)
                     files.append(file)
                 }
             }
@@ -72,34 +74,32 @@ class BitAPI {
         }
     }
 
-    static func replaceFile(filename: String, vaultName: String, content: String) {
+    static func replaceFile(updated: File, original: File?, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
         if let url = actionURL {
             let params = [
                 "action": "replacefile",
-                "filename": filename,
-                "vault": vaultName,
-                "content": content
+                "filename": updated.filename,
+                "vault": updated.vaultName,
+                "content": updated.content ?? ""
             ]
             post(url: url, params: params, success: { (response) in
-                print(response)
-            }, failure: { (error) in
-                print(error ?? "")
-            })
+                success(response)
+                if let originalFilename = original?.filename,
+                    (updated.filename != originalFilename) {
+                    // to do: delete file
+                }
+            }, failure: failure)
         }
     }
 
-    static func getFile(filename: String, vaultName: String) {
+    static func getFile(filename: String, vaultName: String, success: @escaping (NSDictionary)->(), failure: @escaping (Error?)->()) {
         if let url = actionURL {
             let params = [
                 "action": "getfile",
                 "vault": vaultName,
                 "filename": filename
             ]
-            post(url: url, params: params, success: { (response) in
-                print(response)
-            }, failure: { (error) in
-                print(error ?? "")
-            })
+            post(url: url, params: params, success: success, failure: failure)
         }
     }
 
@@ -107,18 +107,18 @@ class BitAPI {
 
     static func getMockVaultList(callback: ([File])->()) {
         callback([
-            File(filename: "File #1", content: "aaaa"),
-            File(filename: "File #2", content: "aaaafffsad"),
-            File(filename: "File #3", content: "aadadfadfasdfdfdsa"),
-            File(filename: "File #4", content: "aaaaaafdfdfecace"),
-            File(filename: "File #5", content: "aaaaxxx"),
-            File(filename: "File #6", content: "aaaaxffx"),
-            File(filename: "File #7", content: "aaaaccccacacac"),
-            File(filename: "File #8", content: "aaaaballs"),
-            File(filename: "File #9", content: "aaaafdsafds"),
-            File(filename: "File #10", content: "aaaaadaf"),
-            File(filename: "File #11", content: "aaaasss"),
-            File(filename: "File #12", content: "aaaadafer"),
+            File(filename: "File #1", vaultName: "vault #1", content: "aaaa"),
+            File(filename: "File #2", vaultName: "vault #1", content: "aaaafffsad"),
+            File(filename: "File #3", vaultName: "vault #1", content: "aadadfadfasdfdfdsa"),
+            File(filename: "File #4", vaultName: "vault #1", content: "aaaaaafdfdfecace"),
+            File(filename: "File #5", vaultName: "vault #1", content: "aaaaxxx"),
+            File(filename: "File #6", vaultName: "vault #1", content: "aaaaxffx"),
+            File(filename: "File #7", vaultName: "vault #1", content: "aaaaccccacacac"),
+            File(filename: "File #8", vaultName: "vault #1", content: "aaaaballs"),
+            File(filename: "File #9", vaultName: "vault #1", content: "aaaafdsafds"),
+            File(filename: "File #10", vaultName: "vault #1", content: "aaaaadaf"),
+            File(filename: "File #11", vaultName: "vault #1", content: "aaaasss"),
+            File(filename: "File #12", vaultName: "vault #1", content: "aaaadafer"),
         ])
     }
 

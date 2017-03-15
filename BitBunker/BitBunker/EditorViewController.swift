@@ -31,10 +31,12 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
     }()
 
     let originalFile: File?
+    let vault: String
     var delegate: EditorViewDelegate?
 
-    required init(file: File?) {
+    required init(file: File?, vault: String) {
         originalFile = file
+        self.vault = vault
         super.init(nibName: nil, bundle: nil)
 
         if let file = file {
@@ -132,7 +134,7 @@ class EditorViewController: UIViewController, RichEditorToolbarDelegate {
         let filename = titleTextField.text ?? ""
         let content = richTextView.html
         if filename.characters.count > 0 {
-            let updated = File(filename: filename, content: content)
+            let updated = File(filename: filename, vaultName: vault, content: content)
             delegate?.saveEdit(updated: updated, original: originalFile)
         }
     }

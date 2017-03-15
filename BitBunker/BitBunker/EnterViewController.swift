@@ -74,7 +74,7 @@ class EnterViewController: UIViewController {
         vaultSecretTextField.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(vaultSecretTextField)
 
-        openVaultButton.addTarget(self, action: #selector(openVault), for: .touchUpInside)
+        openVaultButton.addTarget(self, action: #selector(handleOpenVault), for: .touchUpInside)
         openVaultButton.layer.cornerRadius = 10
         openVaultButton.clipsToBounds = true
         openVaultButton.backgroundColor = UIColor.green
@@ -83,7 +83,7 @@ class EnterViewController: UIViewController {
         openVaultButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(openVaultButton)
 
-        createVaultButton.addTarget(self, action: #selector(createVault), for: .touchUpInside)
+        createVaultButton.addTarget(self, action: #selector(handleCreateVault), for: .touchUpInside)
         createVaultButton.layer.cornerRadius = 10
         createVaultButton.clipsToBounds = true
         createVaultButton.backgroundColor = UIColor.green
@@ -143,13 +143,13 @@ class EnterViewController: UIViewController {
 
     // MARK: - Actions
 
-    func openVault() {
+    func openVault(createNew: Bool) {
         if let vaultName = vaultNameTextField.text,
             let secret = vaultSecretTextField.text,
             vaultName.characters.count > 0,
             secret.characters.count > 0 {
 
-            BitAPI.openVault(vaultName: vaultName, secret: secret, success: { (response) in
+            let success: (NSDictionary)->() = { (response) in
                 if let success = response["success"] as? Bool,
                     success {
                     self.pushVaultViewController(vault: vaultName)
@@ -159,14 +159,26 @@ class EnterViewController: UIViewController {
                 } else {
                     self.responseLabel.text = "Failed"
                 }
-            }, failure: { (error) in
-                print(error ?? "")
-            })
+            }
+
+            if createNew {
+                BitAPI.createVault(vaultName: vaultName, secret: secret, success: success, failure: { (error) in
+                    print(error ?? "")
+                })
+            } else {
+                BitAPI.openVault(vaultName: vaultName, secret: secret, success: success, failure: { (error) in
+                    print(error ?? "")
+                })
+            }
         }
     }
 
-    func createVault() {
+    func handleOpenVault() {
+        openVault(createNew: false)
+    }
 
+    func handleCreateVault() {
+        openVault(createNew: true)
     }
 
     func resetFields() {

@@ -41,8 +41,11 @@ class VaultListModel {
     }
 
     func updateFile(updated: File, original: File?) {
-        
-        delegate?.didUpdateFiles()
+        BitAPI.replaceFile(updated: updated, original: original, success: { (response) in
+            self.updateFiles()
+        }) { (error) in
+            print(error ?? "")
+        }
     }
 
     func deleteFile(original: File) {
@@ -74,6 +77,8 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        model.updateFiles()
+
         title = model.vaultName
 
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: cardCollectionViewLayout)
@@ -103,8 +108,6 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        model.updateFiles()
 
         if (traitCollection.horizontalSizeClass == .regular) {
             collectionView?.contentInset.left = 100
@@ -167,7 +170,7 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     // MARK: - VaultListModelDelegate
 
     func didUpdateFiles() {
-        cardCollectionViewLayout.unrevealCard()
+        unrevealCard()
         collectionView?.reloadData()
     }
 
@@ -187,8 +190,8 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     func handleDeleteFile(indexPath: IndexPath) {
         if indexPath.item < model.files.count {
             let file = model.files[indexPath.item]
-            model.deleteFile(original: file)
             cardCollectionViewLayout.unrevealCard()
+            model.deleteFile(original: file)
         }
     }
 
@@ -207,7 +210,8 @@ class VaultListViewController: UIViewController, UICollectionViewDataSource, HFC
     // MARK: - Layout
 
     func presentFileEditor(file: File?) {
-        let editorViewController = EditorViewController(file: file)
+        unrevealCard()
+        let editorViewController = EditorViewController(file: file, vault: model.vaultName)
         editorViewController.delegate = self
         editorViewController.modalPresentationStyle = .fullScreen
         self.present(editorViewController, animated: true, completion: nil)
